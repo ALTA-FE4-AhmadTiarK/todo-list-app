@@ -12,7 +12,6 @@ function App() {
 		<div className='App'>
 			<Navbar title='Todo Apps' />
 			<Layout>
-				<h1>New Todo App</h1>
 				<Form
 					inputText={inputText}
 					setInputText={setInputText}
