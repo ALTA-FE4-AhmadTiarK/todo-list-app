@@ -6,9 +6,11 @@ const Form = ({ inputText, setInputText, todos, setTodos }) => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		setTodos([...todos, inputText]);
+		setTodos([
+			...todos,
+			{ text: inputText, completed: false, id: Math.random() * 1000 },
+		]);
 		setInputText('');
-		console.log(setInputText);
 	};
 	return (
 		<div>
@@ -19,7 +21,7 @@ const Form = ({ inputText, setInputText, todos, setTodos }) => {
 						onChange={handleInput}
 						value={inputText}
 					/>
-					<button type='submit' onSubmit={handleSubmit}>
+					<button type='submit' onClick={handleSubmit}>
 						<i className='fa-solid fa-plus'></i>
 					</button>
 				</div>
