@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Form from '../components/Form';
+import Layout from '../components/Layout';
 import Navbar from '../components/Navbar';
 import TodoList from '../components/TodoList';
 import '../styles/App.css';
@@ -9,8 +10,8 @@ function App() {
 	const [todos, setTodos] = useState([]);
 	return (
 		<div className='App'>
-			<header className='App-header'>
-				<Navbar title='Todo Apps' />
+			<Navbar title='Todo Apps' />
+			<Layout>
 				<h1>New Todo App</h1>
 				<Form
 					inputText={inputText}
@@ -19,7 +20,7 @@ function App() {
 					setTodos={setTodos}
 				/>
 				<TodoList setTodos={setTodos} todos={todos} />
-			</header>
+			</Layout>
 		</div>
 	);
 }

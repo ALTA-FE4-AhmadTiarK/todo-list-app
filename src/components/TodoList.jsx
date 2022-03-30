@@ -3,8 +3,8 @@ import Todo from './Todo';
 
 export default function TodoList({ todos, setTodos }) {
 	return (
-		<div>
-			<ul className='list-group'>
+		<div className=''>
+			<ul className='list-group position-relative mb-5'>
 				{todos.map((todo) => (
 					<Todo
 						setTodos={setTodos}

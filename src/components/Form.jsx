@@ -14,21 +14,20 @@ const Form = ({ inputText, setInputText, todos, setTodos }) => {
 	};
 	return (
 		<div>
-			<form className='d-flex flex-wrap'>
-				<div id='add-new' className='pe-2 py-2'>
+			<form className='my-5'>
+				<div id='add-new' className='input-group mb-3'>
 					<input
+						className='form-control list-do'
 						type='text'
 						onChange={handleInput}
 						value={inputText}
+						placeholder='Add new todo'
 					/>
-					<button type='submit' onClick={handleSubmit}>
+					<button
+						className='btn btn-primary'
+						type='submit'
+						onClick={handleSubmit}>
 						<i className='fa-solid fa-plus'></i>
-					</button>
-				</div>
-				<div id='search-item' className='ps-2 py-2'>
-					<input type='search' name='' id='' />
-					<button type='submit'>
-						<i className='fa-solid fa-magnifying-glass'></i>
 					</button>
 				</div>
 			</form>

@@ -17,19 +17,19 @@ const Todo = ({ text, todo, todos, setTodos }) => {
 	};
 
 	return (
-		<div className='d-flex flex-wrap my-2 container justify-content-end'>
+		<div className='d-flex flex-wrap container justify-content-center mb-2'>
 			<div className=''>
 				<li
-					className={`bg-primary text-black list-group-item ${
+					className={`list-do form-control list-group-item ${
 						todo.completed ? 'completed' : ''
 					}`}>
 					{text}
 				</li>
 			</div>
-			<button onClick={completeTodo}>
+			<button className='btn btn-success' onClick={completeTodo}>
 				<i className='fa-solid fa-check'></i>
 			</button>
-			<button onClick={deleteTodo}>
+			<button className='btn btn-danger' onClick={deleteTodo}>
 				<i className='fa-solid fa-trash-can'></i>
 			</button>
 		</div>
