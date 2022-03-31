@@ -1,15 +1,22 @@
 import React from 'react';
 import Todo from './Todo';
 
-export default function TodoList({ todos, setTodos, setRemoveTodo, setList }) {
+export default function TodoList({
+	todos,
+	setRemoveTodo,
+	setList,
+	completeTodo,
+	deleteTodo,
+}) {
 	return (
-		<div className=''>
-			<ul className='list-group position-relative mb-5'>
+		<>
+			<ul className='position-relative mb-5 p-0'>
 				{todos.map((todo) => (
 					<Todo
+						completeTodo={completeTodo}
+						deleteTodo={deleteTodo}
 						setList={setList}
 						setRemoveTodo={setRemoveTodo}
-						setTodos={setTodos}
 						todos={todos}
 						todo={todo}
 						key={todo.id}
@@ -17,6 +24,6 @@ export default function TodoList({ todos, setTodos, setRemoveTodo, setList }) {
 					/>
 				))}
 			</ul>
-		</div>
+		</>
 	);
 }

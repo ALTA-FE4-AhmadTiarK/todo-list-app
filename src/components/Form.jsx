@@ -3,15 +3,15 @@ import React from 'react';
 
 const api = new TodoistApi(process.env.REACT_APP_API_KEY);
 
-const Form = ({ inputText, setInputText, todos, setTodos }) => {
+const Form = ({ inputText, setInputText }) => {
 	const handleInput = (e) => {
 		setInputText(e.target.value);
 	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		api.addProject({ name: inputText })
-			.then((project) => console.log(project))
-			.catch((error) => console.log(error));
+			.then((project) => alert(`You have added "${project.name}"`))
+			.catch((error) => alert(`You have an error: ${error.message}`));
 		return setInputText('');
 	};
 	return (
