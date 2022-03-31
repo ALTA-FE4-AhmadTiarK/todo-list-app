@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { isSuccess, TodoistApi } from '@doist/todoist-api-typescript';
 
-const Todo = ({ text, todo, todos, setTodos }) => {
-	const deleteTodo = () => {
-		setTodos(todos.filter((item) => item.id !== todo.id));
+const api = new TodoistApi(process.env.REACT_APP_API_KEY);
+
+const Todo = ({ text, todo, todos, setTodos, fetchData }) => {
+	const deleteTodo = async (e) => {
+		api.deleteProject(todo.id)
+			.then((isSuccess) => console.log(isSuccess))
+			.catch((error) => console.log(error))
+			.finally(() => fetchData());
 	};
+
+	// odd
+
+	// console.log(setRemoveTodo);
+	// setTodos(todos.filter((item) => item.id !== todo.id));
 
 	const completeTodo = () => {
 		setTodos(

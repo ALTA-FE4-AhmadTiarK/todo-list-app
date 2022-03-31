@@ -1,16 +1,18 @@
+import { TodoistApi } from '@doist/todoist-api-typescript';
 import React from 'react';
+
+const api = new TodoistApi(process.env.REACT_APP_API_KEY);
 
 const Form = ({ inputText, setInputText, todos, setTodos }) => {
 	const handleInput = (e) => {
 		setInputText(e.target.value);
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setTodos([
-			...todos,
-			{ text: inputText, completed: false, id: Math.random() * 1000 },
-		]);
-		setInputText('');
+		api.addProject({ name: inputText })
+			.then((project) => console.log(project))
+			.catch((error) => console.log(error));
+		return setInputText('');
 	};
 	return (
 		<div>
@@ -21,7 +23,7 @@ const Form = ({ inputText, setInputText, todos, setTodos }) => {
 						type='text'
 						onChange={handleInput}
 						value={inputText}
-						placeholder='Add new todo'
+						placeholder='Add New Todo'
 					/>
 					<button
 						className='btn btn-primary'
