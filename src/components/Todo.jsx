@@ -1,46 +1,34 @@
-import React, { useEffect } from 'react';
-import { isSuccess, TodoistApi } from '@doist/todoist-api-typescript';
+import React from 'react';
 
-const api = new TodoistApi(process.env.REACT_APP_API_KEY);
-
-const Todo = ({ text, todo, todos, setTodos, fetchData }) => {
-	const deleteTodo = async (e) => {
-		api.deleteProject(todo.id)
-			.then((isSuccess) => console.log(isSuccess))
-			.catch((error) => console.log(error))
-			.finally(() => fetchData());
-	};
-
-	// odd
-
-	// console.log(setRemoveTodo);
-	// setTodos(todos.filter((item) => item.id !== todo.id));
-
-	const completeTodo = () => {
-		setTodos(
-			todos.map((item) => {
-				if (item.id === todo.id) {
-					return { ...item, completed: !item.completed };
-				}
-				return item;
-			})
-		);
-	};
+const Todo = ({ text, todo, completeTodo, deleteTodo }) => {
+	// const completeTodo = () => {
+	// 	setTodos(
+	// todos.map((item) => {
+	// 	if (item.id === todo.id) {
+	// 		return { ...item, completed: !item.completed };
+	// 	}
+	// 	return item;
+	// 		})
+	// 	);
+	// };
 
 	return (
-		<div className='d-flex flex-wrap container justify-content-center mb-2'>
-			<div className=''>
-				<li
-					className={`list-do form-control list-group-item ${
-						todo.completed ? 'completed' : ''
-					}`}>
-					{text}
-				</li>
-			</div>
-			<button className='btn btn-success' onClick={completeTodo}>
+		<div className='container justify-content-center mb-2 p-0 row'>
+			<li
+				color={todo.color}
+				className={`form-control list-group-item col ${
+					todo.completed ? 'completed' : ''
+				}`}>
+				{text}
+			</li>
+			<button
+				className='btn btn-success col-1'
+				onClick={() => completeTodo(todo)}>
 				<i className='fa-solid fa-check'></i>
 			</button>
-			<button className='btn btn-danger' onClick={deleteTodo}>
+			<button
+				className='btn btn-danger col-1'
+				onClick={() => deleteTodo(todo)}>
 				<i className='fa-solid fa-trash-can'></i>
 			</button>
 		</div>
