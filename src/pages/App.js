@@ -15,6 +15,9 @@ function App() {
 		<div className='App'>
 			<Navbar title='Todo Apps' btnText='Detail' />
 			<Layout>
+				<h3 className='my-5'>
+					Type something to add to your todo list
+				</h3>
 				<Form
 					inputText={inputText}
 					setInputText={setInputText}
