@@ -31,7 +31,12 @@
 
 .completed {
     text-decoration: line-through;
-    opacity: 0.5;
+    background-color: darkgray;
+}
+
+.uncompleted {
+    background-color: white;
+    text-decoration: none;
 }
 
 .layout {

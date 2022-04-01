@@ -9,6 +9,7 @@ import { withRouter } from '../utils/navigation';
 function App() {
 	const [inputText, setInputText] = useState('');
 	const [todos, setTodos] = useState([]);
+	document.title = 'Todo | Home';
 
 	return (
 		<div className='App'>

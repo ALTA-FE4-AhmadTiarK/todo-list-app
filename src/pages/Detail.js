@@ -4,14 +4,18 @@ import Layout from '../components/Layout';
 import Navbar from '../components/Navbar';
 import Todo from '../components/Todo';
 import { TodoistApi } from '@doist/todoist-api-typescript';
+import '../styles/App.css';
+import Swal from 'sweetalert2';
 
 const api = new TodoistApi(process.env.REACT_APP_API_KEY);
 const Detail = () => {
+	const [inputText, setInputText] = useState('');
 	const [todos, setTodos] = useState([]);
 	const [list, setList] = useState([]);
 
 	useEffect(() => {
 		fetchData();
+		document.title = 'Detail | Todo';
 	}, []);
 
 	const fetchData = async () => {
@@ -27,16 +31,16 @@ const Detail = () => {
 			});
 	};
 
-	// masih belum bisa complete
-	const completeTodo = (todo) => {
-		api.closeTask(todo.id)
-			.then((isSuccess) => console.log(isSuccess))
-			.catch((error) => console.log(error));
-	};
-
 	const deleteTodo = (todo) => {
 		api.deleteProject(todo.id)
-			.then(() => alert(`You have deleted "${todo.name}"`))
+			.then(() =>
+				Swal.fire({
+					text: `You have deleted "${todo.name}"`,
+					icon: 'warning',
+					confirmButtonColor: '#d33',
+					confirmButtonText: 'Yes, delete it!',
+				})
+			)
 			.catch((error) => console.log(error))
 			.finally(() => fetchData());
 	};
@@ -45,7 +49,7 @@ const Detail = () => {
 		<div>
 			<Navbar title='Detail Todo' btnText='Home' />
 			<Layout>
-				<h1 className='text-center my-5'>Your To-Do</h1>
+				<h2 className='text-center my-5'>Check Your To-Do List Here</h2>
 				<div className='card'>
 					<div className='card-header bg-danger text-white rounded-3 container'>
 						Search Task
@@ -73,7 +77,6 @@ const Detail = () => {
 						<ul className='position-relative mb-5'>
 							{list.map((todo) => (
 								<Todo
-									completeTodo={completeTodo}
 									deleteTodo={deleteTodo}
 									setList={setList}
 									todos={todos}
@@ -83,6 +86,14 @@ const Detail = () => {
 								/>
 							))}
 						</ul>
+						<p className='container mx-2 text-muted'>
+							You can add up to<strong> 8</strong> tasks.
+							<br />
+							<em>
+								If you want to add more, you have to delete your
+								previous created task above.
+							</em>
+						</p>
 					</div>
 				</div>
 			</Layout>

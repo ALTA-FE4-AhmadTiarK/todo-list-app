@@ -1,31 +1,28 @@
 import React from 'react';
 
-const Todo = ({ text, todo, completeTodo, deleteTodo }) => {
-	// const completeTodo = () => {
-	// 	setTodos(
-	// todos.map((item) => {
-	// 	if (item.id === todo.id) {
-	// 		return { ...item, completed: !item.completed };
-	// 	}
-	// 	return item;
-	// 		})
-	// 	);
-	// };
-
+const Todo = ({ text, todo, deleteTodo }) => {
 	return (
 		<div className='container justify-content-center mb-2 p-0 row'>
-			<li
-				color={todo.color}
-				className={`form-control list-group-item col ${
-					todo.completed ? 'completed' : ''
-				}`}>
+			<li className={`form-control list-group-item col`} id={todo.id}>
 				{text}
 			</li>
 			<button
-				className='btn btn-success col-1'
-				onClick={() => completeTodo(todo)}>
+				type='button'
+				onClick={() => {
+					document
+						.getElementById(`${todo.id}`)
+						.classList.contains('completed')
+						? document
+								.getElementById(`${todo.id}`)
+								.classList.remove('completed')
+						: document
+								.getElementById(`${todo.id}`)
+								.classList.add('completed');
+				}}
+				className='btn btn-success col-1'>
 				<i className='fa-solid fa-check'></i>
 			</button>
+
 			<button
 				className='btn btn-danger col-1'
 				onClick={() => deleteTodo(todo)}>
