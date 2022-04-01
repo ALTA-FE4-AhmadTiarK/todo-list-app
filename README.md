@@ -8,4 +8,4 @@ This Todo Apps currently only has these feature:
 
 ### Deployment Site
 
-The Live Site can be checked here: [LINK DEPLOYMENT](https://todo-list-app-drab.vercel.app/)
+The Live Site can be checked here: [LINK DEPLOYMENT](https://todo-list-lgk4cl04d-asgard.vercel.app/)
