@@ -7,4 +7,4 @@ This Todo Apps currently only has these feature:
 - check list of todo [details] you can add up to 8 task, if you want to add more, you have to delete your previous created task
 ### Deployment
 
-This section has moved here: [LINK DEPLOYMENT](https://todo-list-app-drab.vercel.app/)
+The Live Site can be checked here: [LINK DEPLOYMENT](https://todo-list-app-drab.vercel.app/)
