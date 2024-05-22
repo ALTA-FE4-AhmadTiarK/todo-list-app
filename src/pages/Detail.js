@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 const api = new TodoistApi(process.env.REACT_APP_API_KEY);
 const Detail = () => {
-	const [inputText, setInputText] = useState('');
+	const [data, setData] = useState([]);
 	const [todos, setTodos] = useState([]);
 	const [list, setList] = useState([]);
 
@@ -45,33 +45,58 @@ const Detail = () => {
 			.finally(() => fetchData());
 	};
 
+	const escapeRegExp = (value) => {
+		return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	};
+
+	const handleSearch = (searchValue) => {
+		const searchRegExp = new RegExp(escapeRegExp(searchValue), 'i');
+		console.log(searchRegExp);
+		const filterData = list.filter((row) => {
+			return Object.keys(row).some((field) => {
+				return searchRegExp.test(row[field])
+					? row[field].toString()
+					: null;
+			});
+		});
+		setData(filterData);
+	};
+
 	return (
 		<div>
 			<Navbar title='Detail Todo' btnText='Home' />
 			<Layout>
-				<h2 className='text-center my-5'>Check Your To-Do List Here</h2>
-				<div className='card'>
+				<div className='card mt-3'>
 					<div className='card-header bg-danger text-white rounded-3 container'>
-						Search Task
+						Search To-do
 					</div>
+					<p className='container mx-3 mt-3 mb-0 text-muted fst-italic'>
+						Sorry, our Search Feature is not yet ready.
+					</p>
 					<div className='card-body container'>
 						<div className='px-4 row'>
 							<input
 								className='form-control list-group-item col'
 								type='search'
+								onChange={handleSearch}
 							/>
 							<button
+								onClick={handleSearch}
 								type='submit'
 								className='btn btn-primary col-2'>
 								<i className='fa-solid fa-search'></i>
 							</button>
 						</div>
 					</div>
+					<p className='container mx-3 text-muted fst-italic'>
+						You won't be able to search for your to-do list. But you
+						can still check your to-do list below.
+					</p>
 				</div>
 
 				<div className='card mt-3'>
 					<div className='card-header bg-danger text-white rounded-3 container'>
-						Task List
+						To-do List
 					</div>
 					<div className='card-body'>
 						<ul className='position-relative mb-5'>

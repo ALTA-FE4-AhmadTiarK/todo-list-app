@@ -13,9 +13,11 @@ const Navbar = (props) => {
 				{props.title}
 			</h4>
 			{props.children}
-			<button className='btn btn-danger text-decoration-none fw-bold'>
-				<Link to={'/detail'}>Detail</Link>
-			</button>
+			<Link to={'/detail'}>
+				<button className='btn btn-danger text-decoration-none fw-bold'>
+					Detail
+				</button>
+			</Link>
 		</div>
 	);
 };
